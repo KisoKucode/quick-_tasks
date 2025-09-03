@@ -1,39 +1,36 @@
 from sqlalchemy.orm import Session
-from models import Tareas
-from schemas import TareasCreate, TareasUpdate 
+import models
+import schemas
 
-def get_tareas(db: Session, tareas_id: int):
-    return db.query(Tareas).filter(Tareas.id == tareas_id).first()
+def get_task(db: Session, task_id: int):
+    return db.query(models.Task).filter(models.Task.id == task_id).first()
 
+def get_task_by_title(db: Session, title: str):
+    return db.query(models.Task).filter(models.Task.title == title).first()
 
-def get_tareas_by_email(db: Session, email: str):
-    return db.query(Tareas).filter(Tareas.title == email).first()
+def get_tasks(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Task).offset(skip).limit(limit).all()
 
-
-def get_tareas(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(Tareas).offset(skip).limit(limit).all()
-
-
-def delete_tareas(db: Session, tareas_id: int):
-    tareas = db.query(Tareas).filter(Tareas.id == tareas_id).first()
-    if tareas:
-        db.delete(tareas)
-        db.commit()
-    return tareas
-
-
-def create_tareas(db: Session, tareas: TareasCreate):
-    db_tareas = Tareas(title=tareas.title, description=tareas.description, completed=tareas.completed)
-    db.add(db_tareas)
+def create_task(db: Session, task: schemas.TaskCreate):
+    db_task = models.Task(**task.model_dump())
+    db.add(db_task)
     db.commit()
-    db.refresh(db_tareas)
-    return db_tareas
+    db.refresh(db_task)
+    return db_task
 
-def update_tareas(db: Session, tareas_id: int, tareas_update: TareasUpdate):
-    db_tareas = db.query(Tareas).filter(Tareas.id == tareas_id).first()
-    if db_tareas:
-        for key, value in tareas_update.dict().items():
-            setattr(db_tareas, key, value)
+def update_task(db: Session, task_id: int, task_update: schemas.TaskUpdate):
+    db_task = get_task(db, task_id)
+    if db_task:
+        update_data = task_update.model_dump(exclude_unset=True)
+        for key, value in update_data.items():
+            setattr(db_task, key, value)
         db.commit()
-        db.refresh(db_tareas)
-    return db_tareas
+        db.refresh(db_task)
+    return db_task
+
+def delete_task(db: Session, task_id: int):
+    db_task = get_task(db, task_id)
+    if db_task:
+        db.delete(db_task)
+        db.commit()
+    return db_task

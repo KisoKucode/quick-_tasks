@@ -21,6 +21,7 @@ activamos ya sabemos como funciona
 
 ejecucion del server local 
 
-unicorn mein:app --reload 
-
+pip install -r requirements.txt
+unicorn main:app --reload 
+python -m uvicorn mein:app --reload
 ## como disen no eterminado tengo mas ideas que implementar en el proyecto
