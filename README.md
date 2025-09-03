@@ -1,6 +1,6 @@
 ## quick _tasks
 
- una api **API FAST** de gestion de idas y tareas para el momento de desarrollar 
+ una api **API FAST** de gestion de ideas y tareas para el momento de desarrollar 
  este proyecto tiene el fin de apredisaje backned con python 
 
 
