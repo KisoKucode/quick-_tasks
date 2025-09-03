@@ -26,7 +26,7 @@ unicorn main:app --reload
 python -m uvicorn mein:app --reload
 python -m uvicorn appTask.main:app --reload
 .\venv\Scripts\activate.bat
-## como dicen no heterminado tengo mas ideas que implementar en el proyecto
+## tengo mas ideas que implementar en el proyecto en el trascurso de los días meses estaré impletando esas idas 
 ## he atualizado el proyecto con mejoras de estrutura mas modulacion mas cliente por cmd 
 me gusraria hacer un solo comando para ejecutar tanto main.py mas cliente.py
 e inplementar unas tablas de contenido 
