@@ -1,0 +1,41 @@
+
+### Archivos de Sistema Operativo ###
+
+.DS_Store
+Thumbs.db
+
+### Configuraciones de IDEs y Editores ###
+# Ignora carpetas de configuración de Visual Studio Code y JetBrains IDEs
+.vscode/
+.idea/
+
+# Ignora archivos de swap de Vim
+*.swp
+*.swo
+
+### Archivos de entorno y variables 
+.env
+.env.local
+.env.*.local
+
+### Python ###
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos compilados y caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Carpetas de distribución y paquetes
+dist/
+build/
+*.egg-info/
+
+## base de datos
+*.db
+
